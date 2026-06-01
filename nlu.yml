@@ -1,0 +1,160 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - good morning
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - thanks, bye
+
+- intent: request_help
+  examples: |
+    - I need help
+    - help me please
+    - what can you do?
+    - how can you help me?
+
+- intent: report_emergency
+  examples: |
+    - there's an emergency
+    - something happened
+    - I think I'm in danger
+    - disaster situation
+    - I need urgent help
+
+- intent: provide_hazard
+  examples: |
+    - earthquake
+    - flood
+    - wildfire
+    - fire
+    - storm
+    - building collapse
+    - power outage everywhere
+    - infrastructure failure
+    - [earthquake]{"entity":"hazard_type"}
+    - [flood]{"entity":"hazard_type"}
+    - [wildfire]{"entity":"hazard_type"}
+    - [storm]{"entity":"hazard_type"}
+    - [infrastructure failure]{"entity":"hazard_type"}
+
+- intent: provide_location
+  examples: |
+    - I'm in [downtown]{"entity":"location"}
+    - near [central station]{"entity":"location"}
+    - at [my home]{"entity":"location"}
+    - in [the city center]{"entity":"location"}
+    - I'm currently in [Frankfurt]{"entity":"location"}
+    - I'm going to [Ostburger Strasse]{"entity":"location"}
+    - my city is near [Berlin](location)
+    - I live in [Potsdamer Platz](location)
+    - [Magdeburg](location)
+
+- intent: provide_injury
+  examples: |
+    - no one is injured
+    - [none]{"entity":"injury_level"}
+    - [minor]{"entity":"injury_level"} injuries
+    - [serious]{"entity":"injury_level"} injury
+    - bleeding and broken leg
+    - someone is unconscious
+
+
+- intent: provide_trapped
+  examples: |
+    - yes I'm trapped
+    - no I'm not trapped
+    - [yes]{"entity":"is_trapped"}
+    - [no]{"entity":"is_trapped"}
+
+- intent: provide_fire
+  examples: |
+    - yes there is fire
+    - no fire
+    - [yes]{"entity":"is_fire_nearby"}
+    - [no]{"entity":"is_fire_nearby"}
+    - I smell gas
+
+- intent: provide_flood_depth
+  examples: |
+    - [ankle]{"entity":"flood_depth"}
+    - [knee]{"entity":"flood_depth"}
+    - [waist]{"entity":"flood_depth"}
+    - [above waist]{"entity":"flood_depth"}
+    - none
+
+- intent: ask_shelter
+  examples: |
+    - where is the nearest shelter
+    - shelter options
+    - emergency shelter near me
+
+- intent: ask_first_aid
+  examples: |
+    - first aid
+    - what do I do for bleeding
+    - medical help advice
+
+- intent: ask_evacuation
+  examples: |
+    - should I evacuate
+    - evacuation advice
+    - do I need to leave
+- intent: request_human_handover
+  examples: |
+    - escalate to human
+    - I want to talk to a human
+    - connect me to an operator
+    - human operator please
+
+- intent: affirm
+  examples: |
+    - yes
+    - yeah
+    - correct
+    - exactly
+    - sure
+    - okay
+    - ok
+
+- intent: deny
+  examples: |
+    - no
+    - nope
+    - not really
+    - never
+
+- intent: ask_safety_steps
+  examples: |
+    - safety steps
+    - immediate safety steps
+    - what should I do now
+    - what should I do
+    - help me stay safe
+    - basic safety advice
+    - 1
+    - (1)
+    - option 1
+- intent: affirm
+  examples: |
+    - yes
+    - yeah
+    - correct
+    - exactly
+    - sure
+    - okay
+    - ok
+    - alright
+    - got it
+- intent: out_of_scope
+  examples: |
+    - tell me a joke
+    - who are you
+

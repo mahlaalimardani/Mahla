@@ -1,0 +1,54 @@
+#version: "3.1"
+
+#stories:
+
+#- story: Start triage via greeting
+ # steps:
+  #  - intent: greet
+   # - action: utter_greet
+    #- intent: request_help
+    #- action: utter_safety_disclaimer
+    #- action: triage_form
+    #- active_loop: triage_form
+    #- active_loop: null
+    #- action: action_risk_assessment
+
+#- story: Emergency reported directly
+ # steps:
+  #  - intent: report_emergency
+   # - action: utter_safety_disclaimer
+    #- action: triage_form
+    #- active_loop: triage_form
+    #- active_loop: null
+    #- action: action_risk_assessment
+
+
+
+
+
+
+version: "3.1"
+
+stories:
+
+- story: Start triage via greeting
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: request_help
+    - action: utter_safety_disclaimer
+    - action: triage_form
+    - active_loop: triage_form
+    - active_loop: null
+    - action: action_risk_assessment
+    - action: action_human_handover
+
+- story: Emergency reported directly
+  steps:
+    - intent: report_emergency
+    - action: utter_safety_disclaimer
+    - action: triage_form
+    - active_loop: triage_form
+    - active_loop: null
+    - action: action_risk_assessment
+    - action: action_human_handover

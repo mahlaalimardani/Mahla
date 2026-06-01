@@ -1,0 +1,155 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - request_help
+  - report_emergency
+  - provide_hazard
+  - provide_location
+  - provide_injury
+  - provide_trapped
+  - provide_fire
+  - provide_flood_depth
+  - ask_shelter
+  - ask_first_aid
+  - ask_evacuation
+  - out_of_scope
+  - request_human_handover
+  - ask_safety_steps
+entities:
+  - hazard_type
+  - location
+  - injury_level
+  - flood_depth
+  - is_fire_nearby
+  - is_trapped
+
+slots:
+  hazard_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: triage_form
+            requested_slot: hazard_type
+
+  location:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: triage_form
+            requested_slot: location
+
+  injury_level:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: triage_form
+            requested_slot: injury_level
+
+  is_trapped:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: triage_form
+            requested_slot: is_trapped
+
+  is_fire_nearby:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: triage_form
+            requested_slot: is_fire_nearby
+
+  flood_depth:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: triage_form
+            requested_slot: flood_depth
+
+  risk_level:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  handover_summary:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+forms:
+  triage_form:
+    required_slots:
+      - hazard_type
+      - location
+      - injury_level
+      - is_trapped
+      - is_fire_nearby
+      - flood_depth
+
+responses:
+  utter_greet:
+    - text: "Hi. I can help with emergency guidance. If someone is in immediate danger, call your local emergency number now."
+
+  utter_goodbye:
+    - text: "Take care. If the situation gets worse, contact emergency services immediately."
+  utter_safety_steps:
+    - text: "Immediate safety steps: move away from visible danger, avoid fire, smoke, gas, floodwater, unstable buildings, and downed power lines. If you are in immediate danger, contact emergency services now."
+  utter_ask_hazard_type:
+    - text: "What type of emergency is this? (earthquake / building collapse / flood / wildfire / fire / storm / other)"
+
+  utter_ask_location:
+    - text: "Where are you right now? You can type your city/area or a nearby landmark."
+
+  utter_ask_injury_level:
+    - text: "Is anyone injured? (none / minor / serious)"
+
+  utter_ask_is_trapped:
+    - text: "Are you or anyone else trapped and unable to move to safety? (yes/no)"
+
+  utter_ask_is_fire_nearby:
+    - text: "Is there fire, smoke, or a strong smell of gas nearby? (yes/no)"
+
+  utter_ask_flood_depth:
+    - text: "If flooding: what is the water level? (none / ankle / knee / waist / above waist). If not flooding, type 'none'."
+
+  utter_safety_disclaimer:
+    - text: "I provide general guidance and may be limited. For life-threatening emergencies, contact emergency services."
+
+  utter_out_of_scope:
+    - text: "I can only help with emergency information (safety steps, shelter, evacuation, first aid). What emergency help do you need?"
+
+  utter_first_aid_basic:
+    - text: "Basic first aid: if severe bleeding, apply firm pressure; keep the person warm; do not move someone with possible spine injury unless necessary for immediate safety."
+
+  utter_evacuation_general:
+    - text: "If authorities order evacuation, leave early, take essentials (ID, meds, water), avoid hazardous areas, and follow official routes."
+  utter_acknowledge:
+    - text: "Okay. Tell me if you need shelter, evacuation, first aid, or emergency safety guidance."
+actions:
+  - validate_triage_form
+  - action_risk_assessment
+  - action_shelter_lookup
+  - action_human_handover
+  - action_default_fallback
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
